@@ -7,8 +7,7 @@ def normalize_json(data):
 
 def normalize(event, context):
 
-    data = json.loads(event['body'])
-    res = normalize_json(data)
+    res = normalize_json(event)
 
     response = {
         "statusCode": 200,
@@ -17,11 +16,3 @@ def normalize(event, context):
 
     return response
 
-    # Use this code if you don't use the http event with the LAMBDA-PROXY
-    # integration
-    """
-    return {
-        "message": "Go Serverless v1.0! Your function executed successfully!",
-        "event": event
-    }
-    """
