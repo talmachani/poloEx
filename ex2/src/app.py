@@ -1,5 +1,4 @@
 import json
-from dataclasses import dataclass
 
 from sanic import Sanic, response
 from sanic_jwt import exceptions
@@ -30,12 +29,12 @@ app = Sanic(__name__)
 Initialize(app, authenticate=authenticate)
 
 
-@app.route("/")
+@app.route("/", methods=["POST"])
 @protected()
 async def protected(request):
     body = json.loads(request.body)
     res = normalize_json(body)
-    return res
+    return response.json(res)
 
 
 if __name__ == "__main__":
